@@ -102,11 +102,11 @@ class PlotPe implements Plugin{
 				$level = $issuer->level->getName();
 				$plot = $this->getPlotByPos($x, $z, $level);
 				if($plot === false){
-					$output = "You need to stand in a plot";
+					$output = "You need to stand in a plot first\n";
 					break;
 				}
 				if($plot['owner'] !== false){
-					$output = "This plot is already claimed by somebody";
+					$output = "This plot is already claimed by somebody\n";
 					break;
 				}
 				$this->plots[$plot['id']]['owner'] = $username;
@@ -130,7 +130,7 @@ class PlotPe implements Plugin{
 				}
 				$plot = $this->getPlotByOwner($username);
 				if($plot === false){
-					$output = "You don't have a plot, create one with /plot auto or /plot claim";
+					$output = "You don't have a plot, create one with \n /plot auto or /plot claim";
 					break;
 				}elseif(!isset($plot[$id])){
 					$output = "The id isn't right. You don't have so many plots.";
@@ -425,7 +425,7 @@ class PlotPe implements Plugin{
 				$username = $data['player']->iusername;
 				$plot = $this->getPlotByPos($data['target']->x, $data['target']->z, $data['target']->level->getName());
 				if(($plot === false) or ($plot['owner'] !== $username) or (!in_array($username, $plot['helpers']))){
-					$data['player']->sendChat("You can't build in this plot");
+					$data['player']->sendChat("You can't build in this plot\n");
 					return false;
 				}
 			}
